@@ -6,8 +6,8 @@
 ///  - The SC under this block highlights all the syntax of declaring primitive variables 
 /// for rust - this is not runnable in any sense and it not called in any modules in this project
 /// 
-/// Unlike in any programming languages, Rust utilizes its standard libarary for declaring types and does not follow -
-/// the same structural grammar on OOP unlike other languages that utilizes classes and modules to encapsulate data
+/// Unlike in any programming languages, Rust utilizes its standard library for declaring types and does not follow -
+/// the same structural grammar for OOP-  unlike other languages that utilizes classes and modules to encapsulate data
 /// - However, we can still replicate the same structure with the use of structs and implements
 
 
