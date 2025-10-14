@@ -18,9 +18,9 @@ struct Conversions{
 
 impl Conversions{
 
-    // Type checker that retrins string from Type <T> interface
+    // Type checker that returns string from Type <T> interface
     fn type_of<T>(&self,_: &T) -> &'static str {             // Type checker
-        type_name::<T>()
+        type_name::<T>()                                     // return type
     }
    
     // using 'as' keyword for conversion
@@ -51,14 +51,15 @@ impl Conversions{
     
         print!("\nConversion using \"into\"");
         println!("\nn1 = {}, n2 = {}, n3 = {}, n4 = {}", n1,n2,n3,n4);           // display methpd
-        print!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}", 
+        print!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}\n", 
         self.type_of(&n1), 
         self.type_of(&n2),
         self.type_of(&n3), 
         self.type_of(&n4));
    }
 
-   fn string_conversion(&self){
+   // string conversions
+   fn string_conversion(&self){           
 
         // int to string
         let num = 42;
@@ -70,8 +71,11 @@ impl Conversions{
         let num: i32 = s.parse().unwrap();
         println!("{}", num); // 42
 
+
+
    }
 
+   // --TODO - Add more errors here
    fn invalid_ (&self){         //! Invalid conversion | will produce an error
         let a: i32 = 10;
         let b: f64 = 2.5;
@@ -96,7 +100,8 @@ fn main() {
    
    let mut conversion_functions = Conversions::new(String::from(""));
    conversion_functions.conversions_from_ints_1();
+   conversion_functions.conversions_from_ints_2();
+   conversion_functions.string_conversion();
  
-  
    
 }
