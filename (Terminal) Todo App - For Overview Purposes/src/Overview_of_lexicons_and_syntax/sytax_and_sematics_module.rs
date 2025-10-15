@@ -24,10 +24,29 @@ struct PrimitiveDeclaration{
 }
 
 
-// Define all functions here
+/// # Module
+/// A module is another container used to encapsulate related structs and implements
+/// In C# - a module is equivalent to Namespaces
+mod Module{
+
+    // define struct here
+    struct SampleStruct{
+        // Your Code here
+    }
+
+    impl SampleStruct{
+        // YOur methods and functions here
+
+        fn new(){   // constructor
+
+        }
+    }
+}
+
+
 // -- Declare Functions and Methods here 
 // Under this function, all datatypes declaration will be highlighted
-
+/// This is an implement - a special encapsulated element used to implement a struct for defining methods, enums and functions
 impl PrimitiveDeclaration{                                     
 
     enum sample_global_enum{                                   // sample enum declaration
@@ -45,7 +64,7 @@ impl PrimitiveDeclaration{
             age: 20,
             can_vote: true,
             grades: (12,8,"Description"),
-            ratings:[45,23,67,90,100,34],
+            ratings:[45,23,67,90,100,34], 
             vect_: vec![12,4,2,5,6,3,5,3,5,3,5]
         };
 
@@ -58,7 +77,7 @@ impl PrimitiveDeclaration{
         let ratings: [u32; 2] = [1,2];                          // Declaring array
         let boolean: bool = true;                               // Declaring boolean
         let character: char = 'A';                              // Character
-        let person: (&str, i32, bool) = ("Allen", 20, true);    // tuple
+        let person: (&str, i32, bool) = ("Allen", 20, true);    // tuples
         let vects: vec![12,34,60];                              // vectors
 
     }

@@ -5,6 +5,10 @@
 /// src = https://www.reddit.com/r/rust/comments/jqm0rv/rust_type_checking/
 /// src = https://rustc-dev-guide.rust-lang.org/method-lookup.html
 /// src = https://doc.rust-lang.org/rust-by-example/custom_types.html
+/// src = https://users.rust-lang.org/t/how-check-type-of-variable/33845 - type checking
+/// src = https://rustc-dev-guide.rust-lang.org/type-inference.html - type inferences
+/// src = https://doc.rust-lang.org/std/index.html#containers-and-collections - containers anc collections
+/// -- TODO: Finalize all SC blocks
 
 //# ========================================================<using implicit conversions>
 
@@ -12,17 +16,27 @@
 use std::fmt::Alignment;                             
 use std::any::type_name;
 
+// This is a module
+mod Anothername{
+
+}
+
 struct Conversions{
     name: String
 }
 
 impl Conversions{
 
+    // # Type Checking
     // Type checker that returns string from Type <T> interface
     fn type_of<T>(&self,_: &T) -> &'static str {             // Type checker
         type_name::<T>()                                     // return type
     }
    
+    fn type_checking(&self){
+
+    }
+
     // using 'as' keyword for conversion
     fn conversions_from_ints_1(&self){
         let n1: i32 = 10;                   // Base number 
@@ -43,12 +57,12 @@ impl Conversions{
    fn conversions_from_ints_2(&self){
 
         // Only for safe conversions
+        // Using into() function for safe conversions
         let n1: i32 = 10;                   // Base number 
         let n2: f64 = n1.into();            // convert integer to float
         let n3: i8 = n1 as i8;              // using as to convert to safe int type 
         let n4: i32 = n3.into();            // converting i8 to i32 (safe)
 
-    
         print!("\nConversion using \"into\"");
         println!("\nn1 = {}, n2 = {}, n3 = {}, n4 = {}", n1,n2,n3,n4);           // display methpd
         print!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}\n", 
@@ -58,7 +72,7 @@ impl Conversions{
         self.type_of(&n4));
    }
 
-   // string conversions
+      // string conversions
    fn string_conversion(&self){           
 
         // int to string
@@ -71,17 +85,41 @@ impl Conversions{
         let num: i32 = s.parse().unwrap();
         println!("{}", num); // 42
 
-
-
    }
 
-   // --TODO - Add more errors here
+   // Rust supports type inferences similar to java script
+   fn type_inferences(&self){
+        let a = 12;                           // compiler assigns this as a i32
+        let b = "Sample String";     // Treated as a string
+        let mut c = 12.34;                    // Treated as a float (base 64 datatype)
+   }
+
+   // ! Error Demonstrations - on types
+   /// Call this function for typechecking
    fn invalid_ (&self){         //! Invalid conversion | will produce an error
         let a: i32 = 10;
         let b: f64 = 2.5;
 
         // Invalid conversion (Rust does not auto-convert types)
         // let c = a + b;      // -- Uncomment this to see the error cast
+
+        // Integer Overflow
+        let big: u16 = 1000;                           // u16 declaration
+        let small: u8 = big as u8;                     // This is allowed but the data will be lost (u16 - converted to u8)
+        println!("{}", small);                         // Outputs 232 - the maximum lenght of u8
+
+
+        //-- String conversion on to int types - (Accepted on JavaScript) - Uncomment to see the error
+        // let s = "hello";
+        // let num: i32 = s.parse().unwrap(); 
+
+        //-- Conversion of structs - This structure is accepted in JS but rejected in rust
+        struct Celsius(f64);
+        struct Fahrenheit(f64);
+
+        // let c = Celsius(30.0);v                   // -- Uncomment to see the error
+        // let f: Fahrenheit = c;                    //! --> Invalid Conversion 
+
    }
 
    // Struct constructor
@@ -93,15 +131,22 @@ impl Conversions{
 
 //# ========================================================<using implicit conversions>
 
-
-
 // Main method
 fn main() {
    
-   let mut conversion_functions = Conversions::new(String::from(""));
+   // Declare an objet using the struct
+   // All functions with '&self' parameter will be embedded in the struct - can be called under the scope 
+   // - where the struct was instanciated
+   let mut conversion_functions = Conversions::new(String::from(""));  
+
+   // Function calls
    conversion_functions.conversions_from_ints_1();
    conversion_functions.conversions_from_ints_2();
    conversion_functions.string_conversion();
- 
-   
+   conversion_functions.type_inferences();
+
+   // type cheking examples and exceptions --> Uncomment to see the results
+
+   // ! Errors and Examples
+   // conversion_functions.invalid_();
 }
