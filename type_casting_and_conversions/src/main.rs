@@ -9,6 +9,7 @@
 /// src = https://rustc-dev-guide.rust-lang.org/type-inference.html - type inferences
 /// src = https://doc.rust-lang.org/std/index.html#containers-and-collections - containers anc collections
 /// -- TODO: Finalize all SC blocks
+/// -- Add more informatcis like tables
 
 //# ========================================================<using implicit conversions>
 
@@ -27,16 +28,14 @@ struct Conversions{
 
 impl Conversions{
 
+    
+
     // # Type Checking
     // Type checker that returns string from Type <T> interface
     fn type_of<T>(&self,_: &T) -> &'static str {             // Type checker
         type_name::<T>()                                     // return type
     }
    
-    fn type_checking(&self){
-
-    }
-
     // using 'as' keyword for conversion
     fn conversions_from_ints_1(&self){
         let n1: i32 = 10;                   // Base number 
@@ -44,13 +43,15 @@ impl Conversions{
         let n3: u8 = n1 as u8;              // convert i32 to u8
         let n4: u128 = n2 as u128;          // converys f64 to u128 (unsigned)
         
-
-        println!("\n\nn1 = {}, n2 = {}, n3 = {}, n4 = {}", n1,n2,n3,n4);           // display methpd
-        print!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}", 
+        println!("=========================================================");
+        println!("\n\nResult of Conversion using \"as\"" );
+        println!("\nn1 = {}, n2 = {}, n3 = {}, n4 = {}", n1,n2,n3,n4);           // display methpd
+        println!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}", 
         self.type_of(&n1), 
         self.type_of(&n2),
         self.type_of(&n3),
         self.type_of(&n4));
+         println!("\n=========================================================\n");
    }
 
    // using into() for safe conversions
@@ -63,6 +64,7 @@ impl Conversions{
         let n3: i8 = n1 as i8;              // using as to convert to safe int type 
         let n4: i32 = n3.into();            // converting i8 to i32 (safe)
 
+        println!("\n=========================================================\n");
         print!("\nConversion using \"into\"");
         println!("\nn1 = {}, n2 = {}, n3 = {}, n4 = {}", n1,n2,n3,n4);           // display methpd
         print!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}\n", 
@@ -70,6 +72,7 @@ impl Conversions{
         self.type_of(&n2),
         self.type_of(&n3), 
         self.type_of(&n4));
+        println!("\n=========================================================\n");
    }
 
       // string conversions
@@ -101,7 +104,7 @@ impl Conversions{
         let b: f64 = 2.5;
 
         // Invalid conversion (Rust does not auto-convert types)
-        // let c = a + b;      // -- Uncomment this to see the error cast
+        //let c = a + b;      // -- Uncomment this to see the error cast
 
         // Integer Overflow
         let big: u16 = 1000;                           // u16 declaration
@@ -117,8 +120,8 @@ impl Conversions{
         struct Celsius(f64);
         struct Fahrenheit(f64);
 
-        // let c = Celsius(30.0);v                   // -- Uncomment to see the error
-        // let f: Fahrenheit = c;                    //! --> Invalid Conversion 
+        // let c = Celsius(30.0);           // -- Uncomment to see the error
+        // let f: Fahrenheit = c;          //! --> I nvalid Conversion 
 
    }
 
@@ -145,8 +148,9 @@ fn main() {
    conversion_functions.string_conversion();
    conversion_functions.type_inferences();
 
+
    // type cheking examples and exceptions --> Uncomment to see the results
 
    // ! Errors and Examples
-   // conversion_functions.invalid_();
+   conversion_functions.invalid_();
 }

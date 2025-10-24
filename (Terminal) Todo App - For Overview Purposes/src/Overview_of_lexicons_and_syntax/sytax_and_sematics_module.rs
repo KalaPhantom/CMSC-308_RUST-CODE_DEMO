@@ -77,9 +77,8 @@ impl PrimitiveDeclaration{
         let ratings: [u32; 2] = [1,2];                          // Declaring array
         let boolean: bool = true;                               // Declaring boolean
         let character: char = 'A';                              // Character
-        let person: (&str, i32, bool) = ("Allen", 20, true);    // tuples
+        let person: (&str, i32, bool) = ("len len", 20, true);    // tuples
         let vects: vec![12,34,60];                              // vectors
-
     }
 
     fn do_nothing() -> () {                                      // Vector without a return value (static void)
