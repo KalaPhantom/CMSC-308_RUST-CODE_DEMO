@@ -15,17 +15,20 @@ impl TodoItem {
     }
 }
 
+// Main call method
 fn main() {
+
+    // Load recent files as mutables
     let mut todos: Vec<TodoItem> = load_todos("todos.txt");
 
     loop {
-        println!("\n=== Simple Rust To-Do App ===");
+        println!("\n=== Simple Rust To-Do App ===");                           // display
         println!("1. Add task");
         println!("2. List tasks");
         println!("3. Mark task as done");
         println!("4. Save & exit");
 
-        let choice = read_input("Choose an option: ");
+        let choice = read_input("Choose an option: ");   
 
         match choice.trim() {
             "1" => {
@@ -53,14 +56,16 @@ fn main() {
             }
             "4" => {
                 save_todos("todos.txt", &todos);
-                println!("💾 Tasks saved. Goodbye!");
+                println!(" Tasks saved. Goodbye!");
                 break;
             }
-            _ => println!("⚠️ Invalid option, try again."),
+            _ => println!(" Invalid option, try again."),
         }
     }
 }
 
+
+// Read inputs
 fn read_input(prompt: &str) -> String {
     print!("{}", prompt);
     io::stdout().flush().unwrap();
@@ -97,3 +102,6 @@ fn save_todos(filename: &str, todos: &[TodoItem]) {
         file.write_all(line.as_bytes()).unwrap();
     }
 }
+
+
+
