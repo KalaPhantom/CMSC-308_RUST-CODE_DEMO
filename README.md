@@ -157,10 +157,20 @@ code .
 
 <p align = "center">
   <img src = "rs-md-res/run.gif" width="1000">
+  <br><br>
 </p>
 
 
+---
+### Created by:
 
+<p align="center">
+   <img src="https://avatars.githubusercontent.com/KalaPhantom" width="150" style="border-radius:50%" />
+   <img src="https://avatars.githubusercontent.com/Eeshii" width="150" style="border-radius:50%" />
+  <br><br>
+  Roño, Keeshia Mae S. <br>
+  Lerado, Allen N.
+</p>
 
 
 
