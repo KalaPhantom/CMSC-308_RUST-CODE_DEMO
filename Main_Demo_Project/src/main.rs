@@ -2,14 +2,17 @@
 //*  Note
 /// ! Rust only contains Explicit type conversions
 /// 
+/// Sources for additional point of references
 /// src = https://www.reddit.com/r/rust/comments/jqm0rv/rust_type_checking/
 /// src = https://rustc-dev-guide.rust-lang.org/method-lookup.html
 /// src = https://doc.rust-lang.org/rust-by-example/custom_types.html
 /// src = https://users.rust-lang.org/t/how-check-type-of-variable/33845 - type checking
 /// src = https://rustc-dev-guide.rust-lang.org/type-inference.html - type inferences
 /// src = https://doc.rust-lang.org/std/index.html#containers-and-collections - containers anc collections
-/// -- TODO: Finalize all SC blocks
-/// -- Add more informatcis like tables
+/////-- TODO: Finalize all SC blocks 
+///// -- Add more informatcis like tables
+/// 
+
 
 //# ========================================================<using implicit conversions>
 
@@ -17,10 +20,6 @@
 use std::fmt::Alignment;                             
 use std::any::type_name;
 
-// This is a module
-mod Anothername{
-
-}
 
 struct Conversions{
     name: String
@@ -65,7 +64,7 @@ impl Conversions{
         let n4: i32 = n3.into();            // converting i8 to i32 (safe)
 
         println!("\n=========================================================\n");
-        print!("\nConversion using \"into\"");
+        println!("\nConversion using \"into\"");
         println!("\nn1 = {}, n2 = {}, n3 = {}, n4 = {}", n1,n2,n3,n4);           // display methpd
         print!("type of n1: {} - n2 {}  ,  n3 - {}, n4 - {}\n", 
         self.type_of(&n1), 
@@ -78,23 +77,39 @@ impl Conversions{
       // string conversions
    fn string_conversion(&self){           
 
+     
+        println!("\n=========================================================\n");
+        println!("=== String and Integer Conversions ===");
+
         // int to string
         let num = 42;
         let s = num.to_string();
-        println!("{}", s); // "42"
+        println!("{} is a type of {}", s, self.type_of(&s)); // "42"
 
         // string to int
         let s = "42";
         let num: i32 = s.parse().unwrap();
-        println!("{}", num); // 42
+        println!("{} is a type of {}", num, self.type_of(&num)); // 42
+
+
 
    }
 
    // Rust supports type inferences similar to java script
    fn type_inferences(&self){
         let a = 12;                           // compiler assigns this as a i32
-        let b = "Sample String";     // Treated as a string
+        let b = "Sample String";             // Treated as a string
         let mut c = 12.34;                    // Treated as a float (base 64 datatype)
+
+        
+        println!("\n=========================================================\n");
+        println!("\n == Type Inferences Result ");                                         // display methpd
+        print!("type of a: {} - \nb:  {} \nc: - {}\n", 
+        self.type_of(&a), 
+        self.type_of(&b),
+        self.type_of(&c));
+
+        println!("\n=========================================================\n");
    }
 
    // ! Error Demonstrations - on types
@@ -129,7 +144,7 @@ impl Conversions{
    fn new(name:String) -> Self{
      Self {name}
    }
-
+ 
 }
 
 //# ========================================================<using implicit conversions>
@@ -151,6 +166,6 @@ fn main() {
 
    // type cheking examples and exceptions --> Uncomment to see the results
 
-   // ! Errors and Examples
-   conversion_functions.invalid_();
+   // ! Errors and Examples - Uncomment hte source code below to demonstrate errors
+   // conversion_functions.invalid_();
 }
